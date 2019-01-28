@@ -10,3 +10,8 @@
 /captures
 .externalNativeBuild
 .idea/
+/build.gradle
+/gradlegw
+/gradlegw.bat
+/settings.gradle
+/gradle/wrapper

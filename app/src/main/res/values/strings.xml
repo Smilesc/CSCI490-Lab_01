@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CSCI490-Lab_01</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Reset</string>
+    <string name="time_up">Time\'s up!</string>
+    <string name="time_elapsed">Time elapsed: \</string>
+    <string name="time_remain">Time remaining: \</string>
 </resources>

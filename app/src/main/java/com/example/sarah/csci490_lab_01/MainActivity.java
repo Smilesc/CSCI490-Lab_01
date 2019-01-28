@@ -15,46 +15,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView text;
     private TextView timeElapsedView;
     private final long startTime = 50 * 1000;
-    private final long interval = 1 * 1000;
+    private final long interval = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startB = (Button) this.findViewById(R.id.button);
+        startB = this.findViewById(R.id.button);
         startB.setOnClickListener(this);
-        text = (TextView) this.findViewById(R.id.timer);
-        timeElapsedView = (TextView) this.findViewById(R.id.timeElapsed);
+        text = this.findViewById(R.id.timer);
+        timeElapsedView = this.findViewById(R.id.timeElapsed);
         countDownTimer = new MyCountDownTimer(startTime, interval);
         text.setText(text.getText() + String.valueOf(startTime));
+
     }
 
     public void onClick(View view){
         if(!timerHasStarted) {
             countDownTimer.start();
             timerHasStarted = true;
-            startB.setText("Start");
+            startB.setText(R.string.stop);
         } else {
             countDownTimer.cancel();
             timerHasStarted = false;
-            startB.setText("Reset");
+            startB.setText(R.string.reset);
         }
     }
 
     public class MyCountDownTimer extends CountDownTimer {
 
+        String time_remain = getResources().getString(R.string.time_remain);
+        String time_elapsed = getResources().getString(R.string.time_elapsed);
+        String time_up = getResources().getString(R.string.time_up);
+
         public MyCountDownTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
+
         }
 
         public void onFinish(){
-            text.setText("Time's up!");
-            timeElapsedView.setText("Time Elapsed: " + String.valueOf(startTime));
+            text.setText(time_up);
+            timeElapsedView.setText(time_elapsed + String.valueOf(startTime));
         }
 
         public void onTick(long millisUntilFinished){
-            text.setText("Time remain: " + millisUntilFinished);
+            text.setText(time_remain + String.valueOf(millisUntilFinished));
             timeElapsed = startTime - millisUntilFinished;
-            timeElapsedView.setText("Time Elapsed: " + String.valueOf(timeElapsed));
+            timeElapsedView.setText(time_elapsed + String.valueOf(timeElapsed));
 
         }
 
